@@ -5,18 +5,18 @@ pygame.init()
 from pygameDinoRun.Game import Game
 from pygameDinoRun.GameEventHandler import GameEventHandler
 from pygameDinoRun.GameObjects.Background.Cloud import Cloud
-from pygameDinoRun.GameObjects.Player.Dinosaur import Dinosaur
+from pygameDinoRun.GameObjects.Player.Angola import Angola
 from pygameDinoRun.GameObjects.Obstacles.Obstacle import Obstacle
-from pygameDinoRun.GameObjects.Obstacles.LargeCactus import LargeCactus
-from pygameDinoRun.GameObjects.Obstacles.SmallCactus import SmallCactus
-from pygameDinoRun.GameObjects.Obstacles.Bird import Bird
+from pygameDinoRun.GameObjects.Obstacles.CarroG import CarroG
+from pygameDinoRun.GameObjects.Obstacles.CarroP import CarroP
+from pygameDinoRun.GameObjects.Obstacles.Placa import Placa
 from pygameDinoRun.GameObjects.Background.BackgroundScroller import Background
 
 
 def main():
     run = True
     clock = pygame.time.Clock()
-    player = Dinosaur()
+    player = Angola()
     cloud = Cloud()
     background = Background(Game.SCREEN)
     death_count = 0
@@ -36,7 +36,7 @@ def main():
         for obstacle in Game.OBSTACLES:
             obstacle.draw()
             obstacle.update(Game.GAME_SPEED, Game.OBSTACLES)
-            if player.dino_rect.colliderect(obstacle.rect):
+            if player.angola_rect.colliderect(obstacle.rect):
                 pygame.time.delay(500)
                 death_count += 1
                 menu(death_count)
@@ -68,7 +68,7 @@ def menu(death_count):
         textRect = text.get_rect()
         textRect.center = (Game.SCREEN_WIDTH // 2, Game.SCREEN_HEIGHT // 2)
         Game.SCREEN.blit(text, textRect)
-        Game.SCREEN.blit(Dinosaur.RUNNING[0], (Game.SCREEN_WIDTH // 2 - 20, Game.SCREEN_HEIGHT // 2 - 140))
+        Game.SCREEN.blit(Angola.RUNNING[0], (Game.SCREEN_WIDTH // 2 - 20, Game.SCREEN_HEIGHT // 2 - 140))
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
